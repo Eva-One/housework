@@ -164,7 +164,7 @@ main {
 -------->
 
 <!------ 07-购物车 ------->
-<template>
+<!------ <template>
   <div>
     <table border="1" width="700" style="border-collapse: collapse">
       <caption>
@@ -268,3 +268,25 @@ export default {
   },
 };
 </script>
+-------->
+
+<!------ 08-按钮封装 ------->
+<template>
+  <div>
+    <Button typeClass="danger" text="危险按钮"></Button>
+    <Button typeClass="primary" text="测试按钮"></Button>
+    <Button typeClass="success" text="成功按钮"></Button>
+  </div>
+</template>
+
+<script>
+import Button from "./components/08-按钮封装.vue";
+export default {
+  components: {
+    Button,
+  },
+};
+</script>
+
+<style>
+</style>
