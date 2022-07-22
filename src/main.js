@@ -11,8 +11,13 @@ axios.defaults.baseURL = "https://www.escook.cn";
 Vue.prototype.$axios = axios;
 
 Vue.directive("focus", {
-  inserted(el) {
-    el.focus();
+  update(el, binding, vNode) {
+    // console.log(el);
+    // console.log(binding);
+    // console.log(vNode);
+    vNode.context.$nextTick(() => {
+      el.focus();
+    });
   },
 });
 
