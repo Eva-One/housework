@@ -13,8 +13,8 @@
     </van-row>
 
     <p class="title">最新音乐</p>
-    <van-cell-group>
-      <van-cell
+    <van-cell-group class="table">
+      <!-- <van-cell
         center
         :title="item.name"
         :label="`${
@@ -29,19 +29,36 @@
         <template #right-icon>
           <van-icon name="play-circle-o" size="0.6rem" />
         </template>
-      </van-cell>
+      </van-cell> -->
+      <SongItem
+        v-for="item in newList"
+        :key="item.id"
+        :name="item.name"
+        :author="
+          item.song &&
+          item.song.artists &&
+          item.song.artists[0] &&
+          item.song.artists[0].name
+        "
+        :id="item.id"
+      ></SongItem>
     </van-cell-group>
   </div>
 </template>
 
 <script>
 import { requestSongListApi, requsetNewSongListApi } from "@/api";
+import SongItem from "@/components/SongItem";
+
 export default {
   data() {
     return {
       list: [],
       newList: [],
     };
+  },
+  components: {
+    SongItem,
   },
   mounted() {
     this.getList();
@@ -91,5 +108,9 @@ export default {
   -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
   -webkit-line-clamp: 2; /** 显示的行数 **/
   overflow: hidden; /** 隐藏超出的内容 **/
+}
+
+.table {
+  margin-bottom: 1.25rem;
 }
 </style>
