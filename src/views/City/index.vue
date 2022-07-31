@@ -2,12 +2,6 @@
   <div>
     <van-nav-bar title="城市列表" left-arrow @click-left="onClickLeft" />
     <van-index-bar :index-list="indexList">
-      <van-index-anchor index="当前城市" />
-      <van-cell :title="local" />
-
-      <van-index-anchor index="热门城市" />
-      <van-cell :title="item.label" v-for="item in hotCity" :key="item.value" />
-
       <div v-for="item in A" :key="item.id">
         <van-index-anchor :index="item.id" />
         <van-cell
@@ -16,13 +10,6 @@
           :key="index"
         />
       </div>
-      <!-- <van-index-anchor :index="item.id" v-for="item in A" :key="item.id">
-        <van-cell
-          :title="value.label"
-          v-for="(value, index) in item.label"
-          :key="index"
-        />
-      </van-index-anchor> -->
     </van-index-bar>
   </div>
 </template>
@@ -32,33 +19,30 @@ import { requestHotCityApi, requestCityApi } from "@/api/index";
 export default {
   data() {
     return {
-      local: "上海",
-      indexList: [
-        ...["#", "热"],
-        ...[...Array(26)].map((v, i) => String.fromCharCode(i + 65)),
-      ],
-      // classIndex: [...Array(26)].map((v, i) => String.fromCharCode(i + 65)),
-      hotCity: [],
+      indexList: [],
+      hotCitys: [],
       allCity: [],
       newCity: {},
       A: [],
     };
   },
-  mounted() {
-    this.requestHotCity();
-    this.requestCity();
+  async mounted() {
+    this.$toast.loading({
+      message: "加载中...",
+      forbidClick: true,
+    });
+    await this.requestHotCity();
+    await this.requestCity();
   },
 
   methods: {
     onClickLeft() {
-      this.$router.push({
-        path: "/layout/home",
-      });
+      this.$router.go(-1);
     },
     async requestHotCity() {
       try {
         const res = await requestHotCityApi();
-        this.hotCity = res.data.body;
+        this.hotCitys = res.data.body;
       } catch (e) {
         console.log(e);
       }
@@ -87,10 +71,13 @@ export default {
             }
           });
         }
+        this.indexList.push(...["#", "热"]);
+        this.A.push({ label: [{ label: "上海" }], id: "当前城市" });
+        this.A.push({ label: this.hotCitys, id: "热门城市" });
         for (let key in this.newCity) {
           this.A.push({ label: this.newCity[key], id: key.toUpperCase() });
+          this.indexList.push(key.toUpperCase());
         }
-        console.log(this.A);
       } catch (e) {
         console.log(e);
       }
@@ -101,10 +88,17 @@ export default {
 
 <style scoped>
 .van-nav-bar {
-  background-color: #59b77f;
+  background-color: #21b97a;
 }
 
-.van-nav-bar__title {
-  color: white;
+:deep(.van-icon) {
+  color: #fff;
 }
-</style>>
+
+:deep(.van-nav-bar__title) {
+  color: white;
+  font-size: 0.48rem;
+  font-weight: normal;
+}
+</style>
+>

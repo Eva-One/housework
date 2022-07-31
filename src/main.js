@@ -3,7 +3,7 @@ import App from "./App.vue";
 
 Vue.config.productionTip = false;
 
-import "@/assets/flexible";
+import "amfe-flexible";
 import "@/assets/reset.css";
 
 import Vant from "vant";

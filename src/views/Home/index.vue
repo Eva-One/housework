@@ -1,26 +1,23 @@
 <template>
   <div>
-    <div class="top">
-      <div class="location" @click="jumpCity">上海</div>
-      <van-search
-        v-model="value"
-        show-action
-        placeholder="请输入搜索关键词"
-        @search="onSearch"
-        class="mySearch"
-      >
-        <template #action>
-          <van-icon name="map-marked" size="0.6rem" color="white" />
-        </template>
-      </van-search>
-    </div>
+    <van-search
+      v-model="value"
+      show-action
+      placeholder="请输入搜索关键词"
+      @search="onSearch"
+    >
+      <template #action>
+        <van-icon name="map-marked" size="0.6rem" color="white" />
+      </template>
+      <template #label> <span @click="jumpCity">上海</span> </template>
+    </van-search>
 
     <van-swipe :autoplay="3000" class="my-swipe">
       <van-swipe-item v-for="item in images" :key="item.id">
         <img :src="`http://liufusong.top:8080${item.imgSrc}`" />
       </van-swipe-item>
     </van-swipe>
-    <van-grid icon-size="40px" style="border: none">
+    <van-grid icon-size="1.1rem" :border="false">
       <van-grid-item icon="wap-home-o" text="整租" to="/layout/search" />
       <van-grid-item icon="friends-o" text="合租" to="/layout/search" />
       <van-grid-item icon="guide-o" text="地图找房" to="/layout/search" />
@@ -31,8 +28,8 @@
       <van-grid-item v-for="item in group" :key="item.id">
         <van-image
           :src="`http://liufusong.top:8080${item.imgSrc}`"
-          width="50"
-          height="50"
+          width="1.33rem"
+          height="1.33rem"
         />
         <div style="font-size: 0.175rem; padding-left: 0.125rem">
           <p>{{ item.title }}</p>
@@ -77,30 +74,14 @@ export default {
 </script>
 
 <style scoped>
-.top {
-  display: flex;
-  align-items: center;
+.van-search {
   width: 100%;
+  background-color: transparent;
   position: fixed;
-  z-index: 99;
   top: 0;
-  background: transparent;
+  z-index: 99;
 }
-.location {
-  font-size: 0.4rem;
-  height: 0.9rem;
-  background-color: #f7f8fa;
-  padding: 0.2rem 0 0 0.1rem;
-  box-sizing: border-box;
-  margin-left: 0.5rem;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-.mySearch {
-  background: transparent;
-  width: 85%;
-  padding-left: 0;
-}
+
 .van-search__content {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
