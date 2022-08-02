@@ -51,6 +51,12 @@ const routes = [
       return import("@/views/Collection");
     },
   },
+  {
+    path: "/detail",
+    component: () => {
+      return import("@/views/Detail");
+    },
+  },
 ];
 
 export const router = new VueRouter({

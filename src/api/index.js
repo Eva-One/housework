@@ -28,3 +28,5 @@ export const requestUserApi = (token) => {
 };
 
 export const requestCollectionListApi = requestCollectionList;
+
+export * from "@/api/house";
