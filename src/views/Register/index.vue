@@ -51,6 +51,10 @@ export default {
     async onSubmit() {
       try {
         const res = await requestLoginApi(this.account, this.password);
+        if (res.status === 200) {
+          this.$store.commit("SET_TOKEN", res.data.body);
+        }
+        this.$router.go(-1);
         this.$toast(res.data.description);
       } catch (e) {
         console.log(e);

@@ -1,20 +1,43 @@
 <template>
   <div>
     <van-image
+      class="bgpic"
+      v-if="!isLogin"
       width="100%"
       src="http://liufusong.top:8080/img/profile/bg.png"
+    />
+    <van-image
+      class="bgpic"
+      v-else
+      width="100%"
+      :src="`http://liufusong.top:8080${userInfo.avatar}`"
     />
     <div class="login">
       <div class="pic">
         <img src="http://liufusong.top:8080/img/profile/avatar.png" />
       </div>
-      <p>游客</p>
-      <van-button type="info" size="small" color="#57b77e" @click="jumpRegister"
+      <p v-if="!isLogin">游客</p>
+      <p v-else>{{ userInfo.nickname }}</p>
+      <van-button
+        v-if="!isLogin"
+        type="info"
+        size="small"
+        color="#57b77e"
+        @click="jumpRegister"
         >去登录</van-button
       >
+      <van-button
+        v-else
+        type="info"
+        size="small"
+        color="#57b77e"
+        @click="logout"
+        >退出</van-button
+      >
+      <p v-if="isLogin" class="edit">编辑个人资料</p>
     </div>
     <van-grid :column-num="3" :border="false" :icon-size="20" :gutter="12">
-      <van-grid-item icon="star-o" text="我的收藏" />
+      <van-grid-item icon="star-o" text="我的收藏" @click="jumpCollect" />
       <van-grid-item icon="wap-home-o" text="我的出租" />
       <van-grid-item icon="clock-o" text="看房记录" />
       <van-grid-item icon="credit-pay" text="成为房主" />
@@ -26,18 +49,58 @@
 </template>
 
 <script>
+import { requestUserApi } from "@/api";
 export default {
+  data() {
+    return {
+      userInfo: {},
+    };
+  },
+  mounted() {
+    this.getUser();
+  },
   methods: {
     jumpRegister() {
       this.$router.push({
         path: "/register",
       });
     },
+    jumpCollect() {
+      this.$router.push("/collection");
+    },
+    async getUser() {
+      if (this.$store.state.tokenObj.token) {
+        const res = await requestUserApi(this.$store.state.tokenObj.token);
+        this.userInfo = res.data.body;
+      }
+    },
+    logout() {
+      this.$dialog
+        .confirm({
+          title: "提示",
+          message: "是否确定退出?",
+          width: "280px",
+          confirmButtonText: "退出",
+          confirmButtonColor: "#418ce2",
+        })
+        .then(() => {
+          this.$store.commit("SET_TOKEN", {});
+        })
+        .catch(() => {});
+    },
+  },
+  computed: {
+    isLogin() {
+      return !!this.$store.state.tokenObj.token;
+    },
   },
 };
 </script>
 
 <style scoped>
+.bgpic {
+  margin-top: 0;
+}
 .login {
   position: absolute;
   top: 3.52rem;
@@ -45,7 +108,7 @@ export default {
   z-index: 99;
   transform: translateX(-50%);
   width: 85%;
-  height: 4.4rem;
+  height: 5rem;
   background-color: #fff;
   box-shadow: 0 0 10px 3px #ddd;
   text-align: center;
@@ -77,7 +140,8 @@ export default {
 }
 
 .van-grid {
-  margin-top: 3.5rem;
+  background-color: #fff;
+  margin-top: 8.5rem;
 }
 
 :deep(.van-grid-item__text) {
@@ -92,5 +156,18 @@ export default {
 
 :deep(.van-image__img) {
   width: 92%;
+}
+
+.bgpic {
+  margin-top: 0;
+  position: absolute;
+  top: 0;
+  z-index: -2;
+}
+
+.login .edit {
+  margin-top: 0.5rem;
+  font-size: 0.32rem;
+  color: grey;
 }
 </style>

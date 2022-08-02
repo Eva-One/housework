@@ -45,6 +45,12 @@ const routes = [
     path: "/city",
     component: City,
   },
+  {
+    path: "/collection",
+    component: () => {
+      return import("@/views/Collection");
+    },
+  },
 ];
 
 export const router = new VueRouter({

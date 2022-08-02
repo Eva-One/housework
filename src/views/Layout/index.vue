@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view></router-view>
-    <van-tabbar route>
+    <van-tabbar route active-color="#21b97a">
       <van-tabbar-item replace to="/layout/home" icon="home-o"
         >首页</van-tabbar-item
       >
@@ -22,5 +22,4 @@
 export default {};
 </script>
 
-<style>
-</style>
+<style></style>
