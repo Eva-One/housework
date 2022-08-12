@@ -8,6 +8,7 @@
           :title="value.label"
           v-for="(value, index) in item.label"
           :key="index"
+          @click="chooseArea(value)"
         />
       </div>
     </van-index-bar>
@@ -17,6 +18,7 @@
 <script>
 import { requestHotCityApi, requestCityApi } from "@/api/index";
 export default {
+  name: "City",
   data() {
     return {
       indexList: [],
@@ -47,6 +49,10 @@ export default {
         console.log(e);
       }
     },
+    chooseArea(area) {
+      this.$store.commit("SET_CURRENT_CITY", area);
+      this.$router.back();
+    },
     async requestCity() {
       try {
         const res = await requestCityApi({
@@ -72,7 +78,7 @@ export default {
           });
         }
         this.indexList.push(...["#", "热"]);
-        this.A.push({ label: [{ label: "上海" }], id: "当前城市" });
+        this.A.push({ label: [this.$store.state.currentCity], id: "当前城市" });
         this.A.push({ label: this.hotCitys, id: "热门城市" });
         for (let key in this.newCity) {
           this.A.push({ label: this.newCity[key], id: key.toUpperCase() });

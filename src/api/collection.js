@@ -7,3 +7,23 @@ export const requestCollectionList = (token) =>
       authorization: token,
     },
   });
+
+export const delCollection = (token, id) => {
+  return request({
+    url: `/user/favorites/${id}`,
+    method: "DELETE",
+    headers: {
+      authorization: token,
+    },
+  });
+};
+
+export const addCollection = (token, id) => {
+  return request({
+    url: `/user/favorites/${id}`,
+    method: "POST",
+    headers: {
+      authorization: token,
+    },
+  });
+};

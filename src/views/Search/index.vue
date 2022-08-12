@@ -35,15 +35,23 @@
         >
       </van-dropdown-item>
     </van-dropdown-menu>
+
+    <collection-list :list="houseList"></collection-list>
   </div>
 </template>
 
 <script>
+import CollectionList from "@/components/CollectionList.vue";
 export default {
+  name: "Search",
+  components: {
+    CollectionList,
+  },
   data() {
     return {
       show: false,
       value: "",
+      houseList: [],
       areaList: {
         province_list: {
           110000: "北京市",

@@ -38,7 +38,7 @@
     </div>
     <van-grid :column-num="3" :border="false" :icon-size="20" :gutter="12">
       <van-grid-item icon="star-o" text="我的收藏" @click="jumpCollect" />
-      <van-grid-item icon="wap-home-o" text="我的出租" />
+      <van-grid-item icon="wap-home-o" text="我的出租" @click="jumpRent" />
       <van-grid-item icon="clock-o" text="看房记录" />
       <van-grid-item icon="credit-pay" text="成为房主" />
       <van-grid-item icon="contact" text="个人资料" />
@@ -51,6 +51,7 @@
 <script>
 import { requestUserApi } from "@/api";
 export default {
+  name: "User",
   data() {
     return {
       userInfo: {},
@@ -67,6 +68,9 @@ export default {
     },
     jumpCollect() {
       this.$router.push("/collection");
+    },
+    jumpRent() {
+      this.$router.push("/rent");
     },
     async getUser() {
       if (this.$store.state.tokenObj.token) {

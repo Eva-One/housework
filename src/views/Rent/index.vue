@@ -1,46 +1,42 @@
 <template>
   <div>
-    <van-nav-bar title="收藏列表" left-arrow @click-left="onClickLeft" />
-    <collection-list :list="collectionList"></collection-list>
+    <van-nav-bar title="房屋管理" left-arrow @click-left="onClickLeft" />
+    <collection-list :list="rentList"></collection-list>
   </div>
 </template>
 
 <script>
-import { requestCollectionListApi } from "@/api";
+import { requestRentHouseApi } from "@/api";
 import CollectionList from "@/components/CollectionList.vue";
 export default {
-  name: "Collection",
+  name: "Rent",
   data() {
     return {
-      collectionList: [],
+      rentList: [],
     };
   },
+  components: { CollectionList },
   beforeCreate() {
     if (!this.$store.state.tokenObj.token) {
       this.$router.push("/register");
     }
   },
-  components: {
-    CollectionList,
-  },
   created() {
-    this.getCollectionList();
+    this.getRentList();
   },
   methods: {
     onClickLeft() {
       this.$router.push("/layout/user");
     },
-    async getCollectionList() {
+    async getRentList() {
       this.$toast.loading({
         message: "加载中...",
         forbidClick: true,
       });
       try {
-        const res = await requestCollectionListApi(
-          this.$store.state.tokenObj.token
-        );
+        const res = await requestRentHouseApi(this.$store.state.tokenObj.token);
         if (res.data.status == 200) {
-          this.collectionList = res.data.body;
+          this.rentList = res.data.body;
         } else {
           this.$toast.fail(res.data.description);
         }

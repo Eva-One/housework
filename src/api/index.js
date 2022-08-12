@@ -1,7 +1,11 @@
 import request from "@/utils/request";
 import { requestSwiper, requestGroup } from "@/api/home";
 import { requestHotCity, requestCity } from "@/api/city";
-import { requestCollectionList } from "@/api/collection";
+import {
+  requestCollectionList,
+  delCollection,
+  addCollection,
+} from "@/api/collection";
 
 export const requestSwiperApi = requestSwiper;
 export const requestGroupApi = requestGroup;
@@ -28,5 +32,11 @@ export const requestUserApi = (token) => {
 };
 
 export const requestCollectionListApi = requestCollectionList;
+export const delCollectionApi = delCollection;
+export const addCollectionApi = addCollection;
 
 export * from "@/api/house";
+
+export * from "@/api/rent";
+
+export * from "@/api/search";

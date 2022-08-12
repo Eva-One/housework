@@ -9,7 +9,9 @@
       <template #action>
         <van-icon name="map-marked" size="0.6rem" color="white" />
       </template>
-      <template #label> <span @click="jumpCity">上海</span> </template>
+      <template #label>
+        <span @click="jumpCity">{{ $store.state.currentCity.label }}</span>
+      </template>
     </van-search>
 
     <van-swipe :autoplay="3000" class="my-swipe">
@@ -21,7 +23,7 @@
       <van-grid-item icon="wap-home-o" text="整租" to="/layout/search" />
       <van-grid-item icon="friends-o" text="合租" to="/layout/search" />
       <van-grid-item icon="guide-o" text="地图找房" to="/layout/search" />
-      <van-grid-item icon="gold-coin-o" text="去出租" to="/layout/search" />
+      <van-grid-item icon="gold-coin-o" text="去出租" to="/rent/add" />
     </van-grid>
     <van-grid :border="false" :column-num="2" direction="horizontal">
       <van-cell center title="租房小组" value="更多" />
@@ -43,6 +45,7 @@
 <script>
 import { requestSwiperApi, requestGroupApi } from "@/api/index";
 export default {
+  name: "Home",
   data() {
     return {
       images: [],

@@ -57,6 +57,19 @@ const routes = [
       return import("@/views/Detail");
     },
   },
+  {
+    path: "/rent",
+    component: () => {
+      return import("@/views/Rent");
+    },
+  },
+
+  {
+    path: "/rent/add",
+    component: () => {
+      return import("@/views/AddRent");
+    },
+  },
 ];
 
 export const router = new VueRouter({

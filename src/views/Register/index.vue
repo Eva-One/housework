@@ -34,6 +34,7 @@
 import { accountRl, passwordRl } from "@/views/Register/rules";
 import { requestLoginApi } from "@/api/index";
 export default {
+  name: "Register",
   data() {
     return {
       account: "",
