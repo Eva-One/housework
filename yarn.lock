@@ -2581,6 +2581,11 @@
   "resolved" "https://registry.npmmirror.com/deepmerge/-/deepmerge-1.5.2.tgz"
   "version" "1.5.2"
 
+"deepmerge@^4.2.2":
+  "integrity" "sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg=="
+  "resolved" "https://registry.npmmirror.com/deepmerge/-/deepmerge-4.2.2.tgz"
+  "version" "4.2.2"
+
 "default-gateway@^6.0.3":
   "integrity" "sha512-fwSOJsbbNzZ/CUFpqFBqYfYNLj1NbMPm8MMCIzHjC83iSJRBEGmDUxU+WP661BaBQImeC2yHwXtz+P/O9o+XEg=="
   "resolved" "https://registry.npmmirror.com/default-gateway/-/default-gateway-6.0.3.tgz"
@@ -5273,6 +5278,11 @@
   "resolved" "https://registry.npmmirror.com/shell-quote/-/shell-quote-1.7.3.tgz"
   "version" "1.7.3"
 
+"shvl@^2.0.3":
+  "integrity" "sha512-V7C6S9Hlol6SzOJPnQ7qzOVEWUQImt3BNmmzh40wObhla3XOYMe4gGiYzLrJd5TFa+cI2f9LKIRJTTKZSTbWgw=="
+  "resolved" "https://registry.npmmirror.com/shvl/-/shvl-2.0.3.tgz"
+  "version" "2.0.3"
+
 "side-channel@^1.0.4":
   "integrity" "sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw=="
   "resolved" "https://registry.npmmirror.com/side-channel/-/side-channel-1.0.4.tgz"
@@ -5803,13 +5813,26 @@
   "resolved" "https://registry.npmmirror.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.2.13", "vue@^2.6.14", "vue@2.x":
+"vue@^2 || ^3.2.13", "vue@^2.0.0", "vue@^2.6.14", "vue@2.x":
   "integrity" "sha512-mUDXXgBIFr9dk0k/3dpB6wtnCxRhe9mbGxWLtha9mTUrEWkdkZW1d58vl98VKWH067NA8f1Wj4Qwq7y7DDYfyw=="
   "resolved" "https://registry.npmmirror.com/vue/-/vue-2.7.5.tgz"
   "version" "2.7.5"
   dependencies:
     "@vue/compiler-sfc" "2.7.5"
     "csstype" "^3.1.0"
+
+"vuex-persistedstate@^3.2.1":
+  "integrity" "sha512-0OnHKGsCHJcvbEraaGZvuvX4aybM2oQWYRuZmIQB7zUjVM6tP+Hg+oXLrq9r6elT4she9SGtEbGE1L2+XdFgUw=="
+  "resolved" "https://registry.npmmirror.com/vuex-persistedstate/-/vuex-persistedstate-3.2.1.tgz"
+  "version" "3.2.1"
+  dependencies:
+    "deepmerge" "^4.2.2"
+    "shvl" "^2.0.3"
+
+"vuex@^2.0.0 || ^3.0.0", "vuex@^3.6.2":
+  "integrity" "sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw=="
+  "resolved" "https://registry.npmmirror.com/vuex/-/vuex-3.6.2.tgz"
+  "version" "3.6.2"
 
 "watchpack@^2.3.1":
   "integrity" "sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg=="
